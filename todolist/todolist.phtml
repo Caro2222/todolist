@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>todolist</title>
+	<link rel="stylesheet" type="text/css" href="todolist.css">
+</head>
+<h1>Ma todolist :</h1>
+<body>
+	<form action="supprimer.php" method="POST">
+	<?php foreach($allTasks as $key=>$task): ?>
+		<p title="<?=$task[1] ?>" class="<?=$task[3] ?>" _ > 
+		<input type="checkbox" name="lignes[]" 
+		 value="<?= $key ?>"  >	
+		
+		<?= $task[0] ?></p>
+		<?php if($now < new DateTime($task[2])):?>  date dépasser <?php endif ?> 
+		
+	
+
+	<input type="submit" name="" >
+		
+	<?php endforeach ?>
+	
+	
+	
+	</form>
+	<hr>
+	<h2>Nouvelle tache</h2>
+	<form action="ajouter.php" method="POST">
+		<label>Titre</label>
+		<input type="text" name="titre">
+		<br>
+		<label>Decription</label><input type="textarea" name="description">
+		<br>
+		<label>date de fin</label>
+
+		<select name="date">
+		
+		<?php for($i=1;$i<31;$i++) : ?>
+			<option value= "<?=$i ?>" >
+				<?php echo $i ?>
+			</option>
+			<?php endfor;?>
+		</select>
+		<select name="mois" id="mois">
+			<option value="1">Janvier</option>
+			<option value="2">fevrier</option>
+			<option value="3">mars</option>
+			<option value="4">avril</option>
+			<option value="5">mai</option>
+			<option value="6">juin</option>
+			<option value="7">juillet</option>
+			<option value="8">aout</option>
+			<option value="9">septembre</option>
+			<option value="10">octobre</option>
+			<option value="11">novembre</option>
+			<option value="12">decembre</option>
+		</select>
+
+		<select name="annee">	
+		
+		<?php for($i=2019;$i<2024;$i++) : ?>
+			<option value="<?=$i ?>" >
+				<?php echo $i ?>
+			</option>
+			<?php endfor;?>
+		</select>
+		<br>
+		<input type="radio" name="priorite" value="basse"><label for="basse">Basse</label>
+		<input type="radio" name="priorite" value="normal"><label for="Normal">Normal</label>
+		<input type="radio" name="priorite" value="haute"><label for="Haute">Haute</label>
+		<input type="submit" name="">
+	</form>
+</body>
+</html>
